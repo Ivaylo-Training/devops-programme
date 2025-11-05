@@ -1,8 +1,8 @@
+# Ignore Python cache files
 __pycache__/
-.git/
-venv/
 *.pyc
-*.pyo
-*.pyd
+
+
+# Environments
 .env
 .venv
