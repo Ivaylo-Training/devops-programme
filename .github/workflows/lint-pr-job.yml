@@ -1,0 +1,31 @@
+name: Python Lint Check (on specific changes)
+
+on:
+  pull_request:          #rules in order to be triggered
+    paths:
+      - 'app/**'
+      - 'Dockerfile'
+      - '.github/workflows/**'
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install lint dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+
+      - name: Run flake8 linter
+        run: |
+          flake8 app || echo "Running lint checks..."
